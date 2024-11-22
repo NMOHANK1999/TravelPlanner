@@ -168,6 +168,37 @@ We fine-tune **Llama3.1-8B-Instruct** and **Qwen2-7B-Instruct** on TravelPlanner
 | Llama3.1-8B        |        78.3          |        17.8          |     19.3     |      6.1     |       3.8       |
 | Qwen2-7B           |        59.0          |         0.6          |      0.2     |      0.0     |       0.0       |
 
+## How to deploy the instruction fine tuned models from hugging face:
+1. In the travelplanner virtual env install the following packages:
+   1. `pip install fschat`
+   2. `pip install torch`
+   3. `pip install transformers`
+   4. `pip install psutil`
+   5. `pip install accelerate`
+2. In seperate terminal tabs, run:
+  - `python3 -m fastchat.serve.controller`
+  - `python3 -m fastchat.serve.model_worker --model-names "gpt-3.5-turbo" --model-path hsaest/Qwen2-7B-Instruct-travelplanner-SFT --device cpu`
+   (remove --device cpu if using GPU)
+  - `python3 -m fastchat.serve.openai_api_server --host localhost --port 8000`
+3. In terminal, run:
+   - `export OPENAI_API_BASE=http://localhost:8000/v1`
+   - `export OPENAI_API_KEY=EMPTY`
+4. Now you can run the above commands, using the gpt-3.5-turbo api to connect to the huggingface model. Example:
+```bash
+export OUTPUT_DIR='two_stagemode_outputdir_validation'
+export MODEL_NAME=gpt-3.5-turbo
+export OPENAI_API_KEY="EMPTY"
+# if you do not want to test google models, like gemini, just input "1".
+export GOOGLE_API_KEY="1"
+# SET_TYPE in ['validation', 'test']
+export SET_TYPE='validation'
+cd agents
+python tool_agents.py  --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME
+```
+The generated plan will be stored in OUTPUT_DIR/SET_TYPE.
+
+  
+
 
 ## Contact
 
