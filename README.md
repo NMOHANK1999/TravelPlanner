@@ -196,7 +196,30 @@ cd agents
 python tool_agents.py  --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME
 ```
 The generated plan will be stored in OUTPUT_DIR/SET_TYPE.
+Then we can postprocess. However, to do the parsing we need 
+to use an OpenAI model:
+```bash
+unset OPENAI_API_BASE
+export OPENAI_API_KEY="put openai key here"
 
+export OUTPUT_DIR='../evaluation/two_stagemode_outputdir_validation'
+export MODEL_NAME=gpt-3.5-turbo
+export SET_TYPE=validation
+export STRATEGY=direct
+# MODE in ['two-stage','sole-planning']
+export MODE=two-stage
+export TMP_DIR='parsed/two_stagemode_outputdir_validation'
+export SUBMISSION_DIR='eval/two_stagemode_outputdir_validation'
+
+cd postprocess
+python parsing.py  --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME --strategy $STRATEGY --mode $MODE --tmp_dir $TMP_DIR
+
+# Then these parsed plans should be stored as the real json formats.
+python element_extraction.py  --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME --strategy $STRATEGY --mode $MODE --tmp_dir $TMP_DIR
+
+# Finally, combine these plan files for evaluation. We also provide a evaluation example file "example_evaluation.jsonl" in the postprocess folder.
+python combination.py --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME --strategy $STRATEGY --mode $MODE  --submission_file_dir $SUBMISSION_DIR
+```
   
 
 
