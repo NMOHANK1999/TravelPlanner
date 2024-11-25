@@ -649,7 +649,7 @@ if __name__ == '__main__':
     agent = ReactAgent(None, tools=tools_list,max_steps=30,react_llm_name=args.model_name,planner_llm_name=args.model_name)
     with get_openai_callback() as cb:
         
-        for number in tqdm(numbers[:]):
+        for number in tqdm(numbers[:100]): #only do first 100 samples
             query = query_data_list[number-1]['query']
               # check if the directory exists
             if not os.path.exists(os.path.join(f'{args.output_dir}/{args.set_type}')):
