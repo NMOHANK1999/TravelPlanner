@@ -220,8 +220,17 @@ python element_extraction.py  --set_type $SET_TYPE --output_dir $OUTPUT_DIR --mo
 # Finally, combine these plan files for evaluation. We also provide a evaluation example file "example_evaluation.jsonl" in the postprocess folder.
 python combination.py --set_type $SET_TYPE --output_dir $OUTPUT_DIR --model_name $MODEL_NAME --strategy $STRATEGY --mode $MODE  --submission_file_dir $SUBMISSION_DIR
 ```
-  
 
+Then, do evaluation:
+```bash
+export SET_TYPE='validation'
+export EVALUATION_FILE_PATH='../postprocess/eval/two_stagemode_outputdir_validation/validation_gpt-3.5-turbo_two-stage_submission.jsonl'
+
+cd evaluation
+python eval.py --set_type $SET_TYPE --evaluation_file_path $EVALUATION_FILE_PATH
+```
+Note: To do test set evaluation, submit the jsonl file on the huggingface leaderboard instead.
+  
 
 ## Contact
 
