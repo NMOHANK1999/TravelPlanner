@@ -32,7 +32,7 @@ if __name__ == '__main__':
         query_data_list  = load_dataset('osunlp/TravelPlanner','test')['test']
 
     idx_number_list = [i for i in range(1,len(query_data_list)+1)]
-    for idx in tqdm(idx_number_list[:]):
+    for idx in tqdm(idx_number_list[:100]):
         generated_plan = json.load(open(f'{args.output_dir}/{args.set_type}/generated_plan_{idx}.json'))
         if generated_plan[-1][f'{args.model_name}{suffix}_{args.mode}_results'] not in ["","Max Token Length Exceeded."] :
             try:

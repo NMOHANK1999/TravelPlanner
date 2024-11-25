@@ -26,14 +26,14 @@ if __name__ == '__main__':
     os.makedirs(output_dir, exist_ok=True)
 
     total_price = 0
-    for idx, prompt in enumerate(tqdm(data)):
+    for idx, prompt in enumerate(tqdm(data[:100])):
         if prompt == "":
             with open(output_file, 'a+', encoding='utf-8') as f:
                 assistant_output = str(idx)
                 f.write(assistant_output + '\n')
             continue
         results, _, price = prompt_chatgpt("You are a helpful assistant.", index=idx, save_path=output_file,
-                                           user_input=prompt, model_name='gpt-4-1106-preview', temperature=0)
+                                           user_input=prompt, model_name='gpt-4o-mini', temperature=0)
         total_price += price
         
     print(f"Parsing Cost:${total_price}")
