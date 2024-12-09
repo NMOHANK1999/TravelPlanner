@@ -1,0 +1,36 @@
+[
+    {
+        "gpt-3.5-turbo_two-stage_results_logs": "\nThought 1: Step 1: Finding flights from Buffalo to Atlanta.\nAction 1: Thought 2: Step 2: Identifying a flight from Buffalo to Atlanta.\nObservation 1: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 2: Action 2: Thought 1: Step 1: Finding flights from Buffalo to Atlanta.\nAction 2: Thought 1: Step 1: Searching for flights from Buffalo to Atlanta for a duration of 3 days from March 2nd to March 4th, 2022.\nObservation 2: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 3: Thought 3:\nAction 3: Thought 3:\nObservation 3: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 4: Thought 1: Step 1: Finding flights from Buffalo to Atlanta.\nAction 4: Thought 1: Step 1: Searching for flights from Buffalo to Atlanta.\nObservation 4: ",
+        "gpt-3.5-turbo_two-stage_results": "",
+        "gpt-3.5-turbo_two-stage_action_logs": [
+            {
+                "step": 1,
+                "thought": "Thought 1: Step 1: Finding flights from Buffalo to Atlanta.",
+                "action": "Action 1: Thought 2: Step 2: Identifying a flight from Buffalo to Atlanta.",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 2,
+                "thought": "Thought 2: Action 2: Thought 1: Step 1: Finding flights from Buffalo to Atlanta.",
+                "action": "Action 2: Thought 1: Step 1: Searching for flights from Buffalo to Atlanta for a duration of 3 days from March 2nd to March 4th, 2022.",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 3,
+                "thought": "Thought 3: Thought 3:",
+                "action": "Action 3: Thought 3:",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 4,
+                "thought": "Thought 4: Thought 1: Step 1: Finding flights from Buffalo to Atlanta.",
+                "action": "Action 4: Thought 1: Step 1: Searching for flights from Buffalo to Atlanta.",
+                "observation": "",
+                "state": "invalidAction early stop due to 3 max retries."
+            }
+        ]
+    }
+]

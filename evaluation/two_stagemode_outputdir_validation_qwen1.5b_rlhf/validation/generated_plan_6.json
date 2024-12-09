@@ -1,0 +1,36 @@
+[
+    {
+        "gpt-3.5-turbo_two-stage_results_logs": "\nThought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]\nAction 1: Thought 2: Action2: AttractionSearch[Detroit]\nObservation 1: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 2: Thought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]\nAction 2: Thought 1: Action2: MealSearch[Restaurant, Location=\"San Diego\"]\nObservation 2: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 3: Thought 3: Action3: No Action\nAction 3: Thought 4: Thought 4: Adjoin(*, Action1)\nObservation 3: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 4: Thought 4: Thought 5: FlightSearch[Detroit, San Diego, taxi] / Gestion[economy] / Note[cjn1] / Ticket[Ticket ID=1] / TravelAcknowledgement/Suc\nAction 4: Thought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]\nObservation 4: ",
+        "gpt-3.5-turbo_two-stage_results": "",
+        "gpt-3.5-turbo_two-stage_action_logs": [
+            {
+                "step": 1,
+                "thought": "Thought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]",
+                "action": "Action 1: Thought 2: Action2: AttractionSearch[Detroit]",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 2,
+                "thought": "Thought 2: Thought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]",
+                "action": "Action 2: Thought 1: Action2: MealSearch[Restaurant, Location=\"San Diego\"]",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 3,
+                "thought": "Thought 3: Thought 3: Action3: No Action",
+                "action": "Action 3: Thought 4: Thought 4: Adjoin(*, Action1)",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 4,
+                "thought": "Thought 4: Thought 4: Thought 5: FlightSearch[Detroit, San Diego, taxi] / Gestion[economy] / Note[cjn1] / Ticket[Ticket ID=1] / TravelAcknowledgement/Suc",
+                "action": "Action 4: Thought 1: Action1: GoogleDistanceMatrix[Detroit, San Diego, taxi]",
+                "observation": "",
+                "state": "invalidAction early stop due to 3 max retries."
+            }
+        ]
+    }
+]

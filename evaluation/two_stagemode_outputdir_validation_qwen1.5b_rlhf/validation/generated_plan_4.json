@@ -1,0 +1,36 @@
+[
+    {
+        "gpt-3.5-turbo_two-stage_results_logs": "\nThought 1: Action 1:\nAction 1: Sure! Here's how you can gather the required information for the query:\nObservation 1: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 2: Action 2: GoogleDistanceMatrix[New York, London, taxi] / NotebookWrite[Length and Time from New York to London] / NotebookWrite[Distance to New York and Time of Flight] / AttractionSearch[Rome]\nAction 2: Thought 1: Action 1:\nObservation 2: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 3: Action 3: FlightSearch[Toronto, Honolulu, 2022-03-04] / ConsumerSearch[Stay 3 Days] / NotebookWrite[Route and Travel Time to Honolulu]\nAction 3: Thought 2: Action 1:\nObservation 3: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 4: Thought 4: Action 4:\nAction 4: Thought 5: Action 3: GoogleDistanceMatrix[Toronto, Honolulu, taxi] / NotebookWrite[Distance and Time from Toronto to Honolulu] / NotebookWrite[Travel Time and Cost from Toronto to Honolulu]\nObservation 4: ",
+        "gpt-3.5-turbo_two-stage_results": "",
+        "gpt-3.5-turbo_two-stage_action_logs": [
+            {
+                "step": 1,
+                "thought": "Thought 1: Action 1:",
+                "action": "Action 1: Sure! Here's how you can gather the required information for the query:",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 2,
+                "thought": "Thought 2: Action 2: GoogleDistanceMatrix[New York, London, taxi] / NotebookWrite[Length and Time from New York to London] / NotebookWrite[Distance to New York and Time of Flight] / AttractionSearch[Rome]",
+                "action": "Action 2: Thought 1: Action 1:",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 3,
+                "thought": "Thought 3: Action 3: FlightSearch[Toronto, Honolulu, 2022-03-04] / ConsumerSearch[Stay 3 Days] / NotebookWrite[Route and Travel Time to Honolulu]",
+                "action": "Action 3: Thought 2: Action 1:",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 4,
+                "thought": "Thought 4: Thought 4: Action 4:",
+                "action": "Action 4: Thought 5: Action 3: GoogleDistanceMatrix[Toronto, Honolulu, taxi] / NotebookWrite[Distance and Time from Toronto to Honolulu] / NotebookWrite[Travel Time and Cost from Toronto to Honolulu]",
+                "observation": "",
+                "state": "invalidAction early stop due to 3 max retries."
+            }
+        ]
+    }
+]

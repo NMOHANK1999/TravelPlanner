@@ -29,6 +29,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 import argparse
 from datasets import load_dataset
 import os
+import csv
 
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
@@ -454,10 +455,35 @@ class ReactAgent:
                 if self.react_name == 'gemini':
                     request = format_step(self.llm.invoke(self._build_agent_prompt(),stop=['\n']).content)
                 else:
+                    
+                    csv_file_name = "test_csv_rlhf_qwen1.5b.csv"
+                    prompt = self._build_agent_prompt()
+
+                    print("CALLING LLM")
                     request = format_step(self.llm([HumanMessage(content=self._build_agent_prompt())]).content)
+                    print(f"REQUEST: {request}")
+
+                    file_exists = os.path.isfile(csv_file_name) 
+                    with open(csv_file_name, mode='a',newline='',encoding='utf-8') as file:
+                        writer = csv.DictWriter(file, fieldnames = ['prompt', 'completion', 'label'])
+                        if not file_exists:
+                            writer.writeheader()
+
+                        formatted_prompt = f'[{{"content": "{prompt}", "role":"user"}}]'
+                        formatted_output = f'[{{"content": "{request}", "role":"assistant"}}]'
+                        label = False
+                        
+                        writer.writerow({
+                            'prompt': formatted_prompt,
+                            'completion': formatted_output,
+                            'label': label,
+                        })
+
+
                 # print(request)
                 return request
-            except:
+            except Exception as e:
+                print("FAILED:", e)
                 catch_openai_api_error()
                 print(self._build_agent_prompt())
                 print(len(self.enc.encode(self._build_agent_prompt())))
@@ -649,7 +675,7 @@ if __name__ == '__main__':
     agent = ReactAgent(None, tools=tools_list,max_steps=30,react_llm_name=args.model_name,planner_llm_name=args.model_name)
     with get_openai_callback() as cb:
         
-        for number in tqdm(numbers[:100]): #only do first 100 samples
+        for number in tqdm(numbers[:10]): #only do first 100 samples
             query = query_data_list[number-1]['query']
               # check if the directory exists
             if not os.path.exists(os.path.join(f'{args.output_dir}/{args.set_type}')):

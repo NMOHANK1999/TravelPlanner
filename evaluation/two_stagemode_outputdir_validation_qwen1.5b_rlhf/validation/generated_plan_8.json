@@ -1,0 +1,36 @@
+[
+    {
+        "gpt-3.5-turbo_two-stage_results_logs": "\nThought 1: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 28th and 30th, 2022?\nAction 1: Thought 2: **Query**: Find flights between Boston, MA, and San Juan, PR from March 28th to March 30th, 2022 on a 3-day trip budget of $1,400.\nObservation 1: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 2: Action 2: Thought 3: **Query**: Could you arrange a 3-day travel from Boston to San Juan, Puerto Rico, for one person between March 28th and March 30th, 2022, and between March 15th and March 28th, 2022, with a $1,400 budget per person?\nAction 2: Thought 3: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 15th and 28th, 2022 on a $1,400 budget?\nObservation 2: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 3: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 15th and 28th, 2022, with a $1,400 budget?\nAction 3: Thought 4: **Query**: Find flights between Boston, MA, and San Juan, PR, for a 3-day trip on March 15th and 28th, 2022, for a $1,400 budget per person?\nObservation 3: Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].\nThought 4: Thought 1: **Query**: How many flights between Boston and San Juan, Puerto Rico, available on March 28th and 30th, 2022?\nAction 4: Thought 5: **Query**: How many flights between Boston, MA, and San Juan, PR are available on March 28th and 30th, 2022?\nObservation 4: ",
+        "gpt-3.5-turbo_two-stage_results": "",
+        "gpt-3.5-turbo_two-stage_action_logs": [
+            {
+                "step": 1,
+                "thought": "Thought 1: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 28th and 30th, 2022?",
+                "action": "Action 1: Thought 2: **Query**: Find flights between Boston, MA, and San Juan, PR from March 28th to March 30th, 2022 on a 3-day trip budget of $1,400.",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 2,
+                "thought": "Thought 2: Action 2: Thought 3: **Query**: Could you arrange a 3-day travel from Boston to San Juan, Puerto Rico, for one person between March 28th and March 30th, 2022, and between March 15th and March 28th, 2022, with a $1,400 budget per person?",
+                "action": "Action 2: Thought 3: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 15th and 28th, 2022 on a $1,400 budget?",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 3,
+                "thought": "Thought 3: **Query**: What flights are available from Boston to San Juan, Puerto Rico, for a 3-day trip on March 15th and 28th, 2022, with a $1,400 budget?",
+                "action": "Action 3: Thought 4: **Query**: Find flights between Boston, MA, and San Juan, PR, for a 3-day trip on March 15th and 28th, 2022, for a $1,400 budget per person?",
+                "observation": "Invalid Action. Valid Actions are  FlightSearch[Departure City, Destination City, Date] / AccommodationSearch[City] /  RestaurantSearch[City] / NotebookWrite[Short Description] / AttractionSearch[City] / CitySearch[State] / GoogleDistanceMatrix[Origin, Destination, Mode] and Planner[Query].",
+                "state": "invalidAction"
+            },
+            {
+                "step": 4,
+                "thought": "Thought 4: Thought 1: **Query**: How many flights between Boston and San Juan, Puerto Rico, available on March 28th and 30th, 2022?",
+                "action": "Action 4: Thought 5: **Query**: How many flights between Boston, MA, and San Juan, PR are available on March 28th and 30th, 2022?",
+                "observation": "",
+                "state": "invalidAction early stop due to 3 max retries."
+            }
+        ]
+    }
+]
