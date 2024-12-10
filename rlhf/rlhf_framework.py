@@ -14,6 +14,8 @@ import os
 from datetime import datetime
 import json
 import ipdb
+import wandb
+
 
 
 
@@ -31,7 +33,7 @@ def seed_everything(seed=2003):
 
 def apply_lora(model):
     lora_config = LoraConfig(
-        r=2,
+        r=16,
         lora_alpha=32,
         lora_dropout=0.05,
         target_modules="all-linear"
@@ -50,7 +52,7 @@ def preprocess_data(item):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", type=int, default=1)
+    parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--beta", type=float, default=0.1)
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--lr", type=float, default=1e-5)
@@ -62,7 +64,7 @@ def main():
 
     #parser.add_argument("--model_name", type=str, default="gpt2-medium") #gpt-2 with truthy-dpo
     #parser.add_argument("--dataset_name", type=str, default="Intel/orca_dpo_pairs")     # jondurbin/truthy-dpo-v0.1
-    #parser.add_argument("--wandb_project", type=str, default="dpo_gpu_exps_20241205_intel_0.00001_final")
+    parser.add_argument("--wandb_project", type=str, default="DPO_GEN_AI_assignment")
 
 
     args = parser.parse_args()
@@ -71,9 +73,9 @@ def main():
     print(args)
     seed_everything(args.seed)
 
-    # wandb.login()  
-    # wandb_run_name = f"constr-dpo:lam:{args.lambda_penalty}-bs:{args.batch_size}-thres:{args.threshold}-step:{args.step_size}-epochs:{args.epochs}"
-    # wandb.init(project=args.wandb_project, name=wandb_run_name, config=args)
+    wandb.login()  
+    wandb_run_name = f"constr-dpo:-bs:{args.batch_size}-epochs:{args.epochs}"
+    wandb.init(project=args.wandb_project, name=wandb_run_name, config=args)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)
@@ -128,7 +130,7 @@ def main():
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        #report_to="wandb",
+        report_to="wandb",
         output_dir=output_dir,
         overwrite_output_dir=True,
         logging_steps=10,
@@ -139,7 +141,10 @@ def main():
         eval_steps=100,
         evaluation_strategy="steps",
         logging_dir='./logs',
-        logging_strategy="steps"
+        #extra_shit
+        logging_strategy="steps",
+        save_strategy="steps",
+        save_steps=50,
     )
 
     model.train()
