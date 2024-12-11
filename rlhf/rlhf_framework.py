@@ -33,10 +33,11 @@ def seed_everything(seed=2003):
 
 def apply_lora(model):
     lora_config = LoraConfig(
-        r=16,
+        r=4,
         lora_alpha=32,
         lora_dropout=0.05,
-        target_modules="all-linear"
+        #target_modules="all-linear"
+        target_modules = 'all-linear'
     )
     model = get_peft_model(model, lora_config)
     return model
@@ -51,8 +52,11 @@ def preprocess_data(item):
 
 
 def main():
+
+    model_name = "hsaest/Llama-3.1-8B-Instruct-travelplanner-SFT"
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", type=int, default=10)
+    parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--beta", type=float, default=0.1)
     parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--lr", type=float, default=1e-5)
@@ -78,9 +82,9 @@ def main():
     wandb.init(project=args.wandb_project, name=wandb_run_name, config=args)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cpu")
     print(device)
 
-    model_name = "Qwen/Qwen2-1.5B-Instruct"
     tokenizer = AutoTokenizer.from_pretrained(model_name, padding=True, truncation=True)
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -122,7 +126,9 @@ def main():
 
     train_dataset = train_dataset.map(preprocess_data)
 
-    output_dir = os.path.abspath('results')
+
+    result_name = str(model_name) + "_results"
+    output_dir = os.path.abspath(result_name)
 
 
     training_args = TrainingArguments(
