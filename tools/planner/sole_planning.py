@@ -3,7 +3,7 @@ import re
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../..")))
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-from agents.prompts import planner_agent_prompt, cot_planner_agent_prompt, react_planner_agent_prompt,react_reflect_planner_agent_prompt,reflect_prompt
+from agents.prompts import planner_agent_prompt, cot_planner_agent_prompt, icl_planner_agent_prompt, react_planner_agent_prompt,react_reflect_planner_agent_prompt,reflect_prompt
 # from utils.func import get_valid_name_city,extract_before_parenthesis, extract_numbers_from_filenames
 import json
 import time
@@ -79,6 +79,8 @@ if __name__ == "__main__":
         planner = Planner(model_name=args.model_name, agent_prompt=planner_agent_prompt)
     elif args.strategy == 'cot':
         planner = Planner(model_name=args.model_name, agent_prompt=cot_planner_agent_prompt)
+    elif args.strategy == 'icl':
+        planner = Planner(model_name=args.model_name, agent_prompt=icl_planner_agent_prompt)
     elif args.strategy == 'react':
         planner = ReactPlanner(model_name=args.model_name, agent_prompt=react_planner_agent_prompt)
     elif args.strategy == 'reflexion':
@@ -87,16 +89,19 @@ if __name__ == "__main__":
 
     with get_openai_callback() as cb:
         for number in tqdm(numbers[:100]):
+            print(f"NUMBER: {number}")
             
             query_data = query_data_list[number-1]
             reference_information = query_data['reference_information']
             while True:
-                    if args.strategy in ['react','reflexion']:
-                        planner_results, scratchpad  = planner.run(reference_information, query_data['query'])
-                    else:
-                        planner_results  = planner.run(reference_information, query_data['query'])
-                    if planner_results != None:
-                        break
+                print(f"HERE")
+                if args.strategy in ['react','reflexion']:
+                    planner_results, scratchpad  = planner.run(reference_information, query_data['query'])
+                else:
+                    planner_results  = planner.run(reference_information, query_data['query'])
+                    print(f"got planner results")
+                if planner_results != None:
+                    break
             print(planner_results)
             # check if the directory exists
             if not os.path.exists(os.path.join(f'{args.output_dir}/{args.set_type}')):

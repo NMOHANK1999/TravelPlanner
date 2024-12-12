@@ -137,6 +137,95 @@ Given information: {text}
 Query: {query}
 Travel Plan: Let's think step by step. First, """
 
+ICL_PLANNER_INSTRUCTION = """You are a proficient planner. Based on the provided information and query, please give me a detailed plan, including specifics such as flight numbers (e.g., F0123456), restaurant names, and hotel names. Note that all the information in your plan should be derived from the provided data. You must adhere to the format given in the example. Additionally, all details should align with common sense. Attraction visits and meals are expected to be diverse. The symbol '-' indicates that information is unnecessary. For example, in the provided sample, you do not need to plan after returning to the departure city. When you travel to two cities in one day, you should note it in the 'Current City' section as in the example (i.e., from A to B). 
+
+***** Example *****
+Query: Could you create a travel plan for 7 people from Ithaca to Charlotte spanning 3 days, from March 8th to March 14th, 2022, with a budget of $30,200?
+Travel Plan:
+Day 1:
+Current City: from Ithaca to Charlotte
+Transportation: Flight Number: F3633413, from Ithaca to Charlotte, Departure Time: 05:38, Arrival Time: 07:46
+Breakfast: Nagaland's Kitchen, Charlotte
+Attraction: The Charlotte Museum of History, Charlotte
+Lunch: Cafe Maple Street, Charlotte
+Dinner: Bombay Vada Pav, Charlotte
+Accommodation: Affordable Spacious Refurbished Room in Bushwick!, Charlotte
+
+Day 2:
+Current City: Charlotte
+Transportation: -
+Breakfast: Olive Tree Cafe, Charlotte
+Attraction: The Mint Museum, Charlotte;Romare Bearden Park, Charlotte.
+Lunch: Birbal Ji Dhaba, Charlotte
+Dinner: Pind Balluchi, Charlotte
+Accommodation: Affordable Spacious Refurbished Room in Bushwick!, Charlotte
+
+Day 3:
+Current City: from Charlotte to Ithaca
+Transportation: Flight Number: F3786167, from Charlotte to Ithaca, Departure Time: 21:42, Arrival Time: 23:26
+Breakfast: Subway, Charlotte
+Attraction: Books Monument, Charlotte.
+Lunch: Olive Tree Cafe, Charlotte
+Dinner: Kylin Skybar, Charlotte
+Accommodation: -
+
+***** Example Ends *****
+
+***** Example *****
+Query: Could you create a travel plan for 5 people from Key West to Indianapolis and then to Fort Wayne, spanning 5 days, from March 20th to March 25th, 2022, with a budget of $15,000?
+
+Travel Plan:
+Day 1:
+Current City: from Key West to Indianapolis
+Transportation: Flight Number: F1234567, from Key West to Indianapolis, Departure Time: 08:00, Arrival Time: 10:30
+Breakfast: Blueberry Muffin Cafe, Indianapolis
+Attraction: Indianapolis Museum of Art, Indianapolis
+Lunch: Shapiro's Delicatessen, Indianapolis
+Dinner: St. Elmo Steak House, Indianapolis
+Accommodation: The Alexander, Indianapolis
+
+Day 2:
+Current City: Indianapolis
+Transportation: -
+Breakfast: Cafe Patachou, Indianapolis
+Attraction: White River State Park, Indianapolis; Indiana State Museum, Indianapolis
+Lunch: The Eagle, Indianapolis
+Dinner: The Capital Grille, Indianapolis
+Accommodation: The Alexander, Indianapolis
+
+Day 3:
+Current City: from Indianapolis to Fort Wayne
+Transportation: Drive from Indianapolis to Fort Wayne, Departure Time: 09:00, Arrival Time: 10:30
+Breakfast: The Garden Table, Indianapolis
+Attraction: Fort Wayne Museum of Art, Fort Wayne; Science Central, Fort Wayne
+Lunch: The Hoppy Gnome, Fort Wayne
+Dinner: Casa, Fort Wayne
+Accommodation: Courtyard by Marriott Fort Wayne Downtown, Fort Wayne
+
+Day 4:
+Current City: Fort Wayne
+Transportation: -
+Breakfast: The Donut Bar, Fort Wayne
+Attraction: Historic Old Fort, Fort Wayne; Foellinger-Freimann Botanical Conservatory, Fort Wayne
+Lunch: The Landing, Fort Wayne
+Dinner: The Olive Garden, Fort Wayne
+Accommodation: Courtyard by Marriott Fort Wayne Downtown, Fort Wayne
+
+Day 5:
+Current City: from Fort Wayne to Key West
+Transportation: Flight Number: F7654321, from Fort Wayne to Key West, Departure Time: 18:00, Arrival Time: 20:30
+Breakfast: The Pancake House, Fort Wayne
+Attraction: Lakeside Park & Rose Garden, Fort Wayne
+Lunch: Mad Anthony Brewing Company, Fort Wayne
+Dinner: Louie's Backyard, Key West
+Accommodation: -
+
+***** Example Ends *****
+
+Given information: {text}
+Query: {query}
+Travel Plan: Let's think step by step. First, """
+
 REACT_PLANNER_INSTRUCTION = """You are a proficient planner. Based on the provided information and query, please give me a detailed plan, including specifics such as flight numbers (e.g., F0123456), restaurant names, and hotel names. Note that all the information in your plan should be derived from the provided data. You must adhere to the format given in the example. Additionally, all details should align with common sense. Attraction visits and meals are expected to be diverse. The symbol '-' indicates that information is unnecessary. For example, in the provided sample, you do not need to plan after returning to the departure city. When you travel to two cities in one day, you should note it in the 'Current City' section as in the example (i.e., from A to B). Solve this task by alternating between Thought, Action, and Observation steps. The 'Thought' phase involves reasoning about the current situation. The 'Action' phase can be of two types:
 (1) CostEnquiry[Sub Plan]: This function calculates the cost of a detailed sub plan, which you need to input the people number and plan in JSON format. The sub plan should encompass a complete one-day plan. An example will be provided for reference.
 (2) Finish[Final Plan]: Use this function to indicate the completion of the task. You must submit a final, complete plan as an argument.
@@ -234,6 +323,11 @@ planner_agent_prompt = PromptTemplate(
 cot_planner_agent_prompt = PromptTemplate(
                         input_variables=["text","query"],
                         template = COT_PLANNER_INSTRUCTION,
+                        )
+
+icl_planner_agent_prompt = PromptTemplate(
+                        input_variables=["text","query"],
+                        template = ICL_PLANNER_INSTRUCTION,
                         )
 
 react_planner_agent_prompt = PromptTemplate(
